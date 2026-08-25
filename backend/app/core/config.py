@@ -3,7 +3,7 @@ from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+    model_config = SettingsConfigDict(env_file=("../.env", ".env"), extra="ignore")
     app_name: str = "Employ Research API"
     api_v1_prefix: str = "/api/v1"
     database_url: str = "postgresql+psycopg://employ_research:change-me-in-local-env@postgres:5432/employ_research"
@@ -25,4 +25,3 @@ def get_settings() -> Settings:
     return Settings()
 
 settings = get_settings()
-
